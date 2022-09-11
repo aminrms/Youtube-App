@@ -1,0 +1,53 @@
+.sidebar {
+  position: fixed;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  top: 0;
+  left: 0;
+  width: 220px;
+  padding: 1rem;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  height: 100%;
+  z-index: 3;
+  background-color: #fff;
+  transition: all 0.455s cubic-bezier(0.215, 0.61, 0.355, 1);
+  transform: translateX(-150%);
+}
+.sidebar .first-box{
+  padding: 1.8rem 0;
+}
+.sidebar .second-box {
+  overflow-y: scroll;
+  overflow-x: hidden;
+  padding: 0.2rem 0;
+}
+.sidebar div::-webkit-scrollbar {
+  width: 0;
+}
+.sidebar li {
+  width: 100%;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0.5rem 0.6rem;
+  gap: 0.5rem;
+}
+.sidebar li span {
+  padding: 0.5rem 1rem;
+  display: flex;
+  cursor: pointer;
+  width: 100%;
+  gap: 0.5rem;
+  color: #333;
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.sidebar li span:hover {
+  background-color: #eee;
+}
+.sidebar.show {
+  transform: translateX(0);
+}
