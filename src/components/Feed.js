@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect ,  useContext} from "react";
 // Material-UI
 import { Container, Skeleton, Box, Card } from "@mui/material";
 // API
@@ -6,9 +6,10 @@ import { fetchAPI } from "../utils/fetchData";
 import Sidebar from "./Sidebar";
 import VideoCard from "./VideoCard";
 import ChannelCard from "./ChannelCard";
+import { SelectedCategoryContextProvider } from "../Context/SelectCategoryContext";
 const Feed = () => {
   const [videos, setVideos] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState("Gaming");
+  const {selectedCategory}  = useContext(SelectedCategoryContextProvider)
   useEffect(() => {
     const fetchApi = async () => {
       setVideos(await fetchAPI(selectedCategory, "snippet", "search"));
@@ -17,10 +18,6 @@ const Feed = () => {
   }, [selectedCategory]);
   return (
     <Container maxWidth={"xl"}>
-      <Sidebar
-        selectedCategory={selectedCategory}
-        setSelectedCategory={setSelectedCategory}
-      />
       <Box
         sx={{
           display: "grid",

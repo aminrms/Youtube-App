@@ -11,19 +11,22 @@ import {
 import ScrollToTop from "./ScrollToTop";
 import Footer from "./components/Footer";
 
+import SelectCategoryContext from "./Context/SelectCategoryContext";
 const App = () => {
   return (
-    <Box>
-      <ScrollToTop />
-      <Navbar />
-      <Routes>
-        <Route path="/" exact element={<Feed />} />
-        <Route path="/video/:id" element={<VideoDetails />} />
-        <Route path="/channel/:id" element={<ChannelDetails />} />
-        <Route path="/search/:searchTerm" element={<SearchFeed />} />
-      </Routes>
-      <Footer/>
-    </Box>
+    <SelectCategoryContext>
+      <Box>
+        <ScrollToTop />
+        <Navbar />
+        <Routes>
+          <Route path="/" exact element={<Feed />} />
+          <Route path="/video/:id" element={<VideoDetails />} />
+          <Route path="/channel/:id" element={<ChannelDetails />} />
+          <Route path="/search/:searchTerm" element={<SearchFeed />} />
+        </Routes>
+        <Footer />
+      </Box>
+    </SelectCategoryContext>
   );
 };
 

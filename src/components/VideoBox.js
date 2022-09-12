@@ -51,8 +51,8 @@ const VideoBox = ({ id }) => {
       <Box sx={{width: "100%"}}>
         <ReactPlayer
           url={`https://www.youtube.com/watch?v=${id}`}
-          style={{}}
           className="react-player"
+          width="100%"
           controls
         />
         <Box sx={{ py: 1, mb: 1, borderBottom: "1px solid #ddd" }}>

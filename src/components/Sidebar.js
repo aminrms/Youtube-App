@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 
 // Materia-UI
 
@@ -7,14 +7,12 @@ import { categories, logo } from "../utils/constants";
 import MenuIcon from "@mui/icons-material/Menu";
 import { Link } from "react-router-dom";
 
-const Sidebar = ({
-  menu,
-  setMenu,
-  selectedCategory,
-  setSelectedCategory,
-  closeHandler,
-}) => {
-  console.log()
+import { SelectedCategoryContextProvider } from "../Context/SelectCategoryContext";
+const Sidebar = ({ menu, setMenu, closeHandler }) => {
+  const { selectedCategory, setSelectedCategory } = useContext(
+    SelectedCategoryContextProvider
+  );
+
   return (
     <>
       <Box
@@ -74,7 +72,11 @@ const Sidebar = ({
               }}
               to="/"
             >
-              <Avatar sx={{width:'35px', height:'35px'}} src={logo} alt="logo" />
+              <Avatar
+                sx={{ width: "35px", height: "35px" }}
+                src={logo}
+                alt="logo"
+              />
               <Typography
                 fontWeight="bold"
                 variant="subtitle1"
@@ -99,15 +101,17 @@ const Sidebar = ({
             listStyle: "none",
           }}
         >
-          
           {categories.map((category, idx) => {
             return (
               <li onClick={() => setMenu(false)} key={idx}>
                 <span
-                  onClick={() => setSelectedCategory(category.name) }
-                  // style={}
+                  onClick={() => setSelectedCategory(category.name)}
+                  style={{
+                    backgroundColor:
+                      selectedCategory === category.name ? "#eee" : "#fff",
+                  }}
                 >
-                  {category.icon} {}
+                  {category.icon}
                   <Typography
                     variant="subtitle2"
                     component="h6"
