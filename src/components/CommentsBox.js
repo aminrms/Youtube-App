@@ -83,7 +83,7 @@ const CommentsBox = ({ comments }) => {
                       color="textPrimary"
                       className="comment-text"
                     >
-                      {item?.snippet?.topLevelComment?.snippet?.textOriginal}
+                      {item?.snippet?.topLevelComment?.snippet?.textOriginal.slice(0,50)}...
                     </Typography>
                     <Typography
                       fontWeight="medium"

@@ -117,7 +117,12 @@ const Sidebar = ({ menu, setMenu, closeHandler }) => {
                     component="h6"
                     fontWeight="medium"
                   >
-                    {category.name}
+                    <Link
+                      to="/"
+                      style={{ textDecoration: "none", color: "#333" }}
+                    >
+                      {category.name}
+                    </Link>
                   </Typography>
                 </span>
               </li>

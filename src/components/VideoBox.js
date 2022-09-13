@@ -12,6 +12,7 @@ import CommentsBox from "./CommentsBox";
 import moment from "moment";
 import millify from "millify";
 import HtmlReactParser from "html-react-parser";
+import { Link } from "react-router-dom";
 const VideoBox = ({ id }) => {
   const [videoDetail, setVideoDetail] = useState({});
   const [comments, setComments] = useState([]);
@@ -47,12 +48,13 @@ const VideoBox = ({ id }) => {
     fetchApi3();
   }, [id]);
   return (
-    <Box sx={{width: "100%" , height: "100%"}}>
-      <Box sx={{width: "100%"}}>
+    <Box sx={{ width: "100%", height: "100%" }}>
+      <Box sx={{ width: "100%" }}>
         <ReactPlayer
           url={`https://www.youtube.com/watch?v=${id}`}
           className="react-player"
           width="100%"
+          style={{ margin: "0 auto" }}
           controls
         />
         <Box sx={{ py: 1, mb: 1, borderBottom: "1px solid #ddd" }}>
@@ -129,7 +131,12 @@ const VideoBox = ({ id }) => {
             color="textPrimary"
           >
             {videoDetail?.items ? (
-              videoDetail?.items[0].snippet?.channelTitle
+              <Link
+                style={{ textDecoration: "none", color: "#333" }}
+                to={`/channel/${videoDetail?.items[0]?.snippet?.channelId}`}
+              >
+                {videoDetail?.items[0].snippet?.channelTitle}
+              </Link>
             ) : (
               <Skeleton variant="text" width="35%" height={"20px"} />
             )}
@@ -153,7 +160,7 @@ const VideoBox = ({ id }) => {
             {videoDetail?.items ? (
               HtmlReactParser(
                 videoDetail?.items[0].snippet?.localized?.description
-              )
+              ).slice(0, 80)
             ) : (
               <Skeleton variant="text" width="80%" height={"100%"} />
             )}

@@ -19,13 +19,11 @@ const VideoCard = ({ item, flexDirection }) => {
           sx={{ maxWidth: 345 }}
           className={flexDirection ? "card row" : "card"}
         >
-          <Box className="img-box">
-            <CardMedia
-              component="img"
-              height="180"
-              image={item.snippet.thumbnails.high.url}
+          <Box className="img-box" >
+            <img
+              src={item.snippet.thumbnails.high.url}
               alt={item.snippet.title}
-              sx={{
+              style={{
                 objectFit: "cover",
               }}
             />
@@ -37,10 +35,13 @@ const VideoCard = ({ item, flexDirection }) => {
             >
               <Typography
                 variant="subtitle1"
-                color="textSecondary"
+                color="textPrimary"
                 fontWeight="medium"
                 component={"h6"}
-                sx={{ display: "-webkit-box" , fontSize: {xs:'13px' , sm:'14.5px' , md:'16px'}}}
+                sx={{
+                  display: "-webkit-box",
+                  fontSize: { xs: "13px", sm: "14.5px", md: "16px" },
+                }}
               >
                 {item?.snippet?.title}
               </Typography>
@@ -66,7 +67,7 @@ const VideoCard = ({ item, flexDirection }) => {
                   gap: "1rem",
                   width: "100%",
                   height: "100%",
-                  fontSize: {xs:'13px' , sm:'14.5px' , md:'16px'},
+                  fontSize: { xs: "13px", sm: "14.5px", md: "16px" },
                   mb: 1.5,
                 }}
               >
@@ -93,7 +94,7 @@ const VideoCard = ({ item, flexDirection }) => {
         </div>
       ) : (
         <Card
-          sx={{ maxWidth: 345 }}
+          sx={{ maxWidth: 345, width: { xs: "100%", xl: "340px" } }}
           className={flexDirection ? "card row" : "card"}
         >
           <Box className="img-box">
@@ -114,7 +115,7 @@ const VideoCard = ({ item, flexDirection }) => {
             >
               <Typography
                 variant="subtitle1"
-                color="textSecondary"
+                color="textPrimary"
                 fontWeight="medium"
                 component={"h6"}
                 sx={{ display: "-webkit-box" }}

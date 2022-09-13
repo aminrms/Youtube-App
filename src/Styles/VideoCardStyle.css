@@ -8,8 +8,8 @@
 } */
 
 .card {
-  /* width: 100%; */
-  height: 320px;
+  /* width: 340px; */
+  height: 330px;
   transition: all 0.3 ease-in-out;
 }
 .card h6 {
@@ -34,8 +34,8 @@
   margin: 0.2rem 0;
 }
 .card.row .img-box {
-  width: 35%;
-  height: 100%;
+  width: 30%;
+  height: 85%;
   display: flex;
   background-color: #ddd;
   align-items: center;
@@ -47,7 +47,7 @@
   object-fit: cover;
 }
 .card.row .card-content {
-  width: 65%;
+  width: 70%;
   height: 100%;
   display: flex;
   justify-content: flex-start;
@@ -68,9 +68,12 @@
     height:fit-content !important;
   }
   .card.row .img-box {
-    height: 50%;
+    height: 30% !important;
     width: 40%;
     margin: 0.5rem auto;
+  }
+  .card.row .img-box img{
+    object-fit: fill;
   }
   .card.row .card-content {
     width: 50%;
