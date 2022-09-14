@@ -11,6 +11,8 @@ import { useParams } from "react-router-dom";
 import { fetchAPI } from "../utils/fetchData";
 import VideoCard from "./VideoCard";
 
+import ChannelCardForDetails from "./ChannelCardForDetails";
+
 const ChannelDetails = () => {
   const { id } = useParams();
   const [videos, setVideos] = useState([]);
@@ -26,16 +28,13 @@ const ChannelDetails = () => {
     fetchApi();
     fetchApi2();
   }, [id]);
-  console.log(channelDetails);
   return (
-    <Container
-      maxWidth="xl"
-    >
+    <Container maxWidth="xl">
       {channelDetails.items ? (
         <Box
           sx={{
             width: "100%",
-            height: { xs: "150px", sm: "180px", md: "200px", lg: "320px" },
+            height: { xs: "90px", sm: "180px", md: "200px", lg: "320px" },
           }}
         >
           <img
@@ -68,10 +67,14 @@ const ChannelDetails = () => {
           display: "flex",
           alignItems: "center",
           justifyContent: "flex-start",
+          backgroundColor: "#fff",
+          borderBottom: "1px solid #ddd",
+          // boxShadow: "rgba(149, 157, 165, 0.2) 0px 15px 24px !important",
         }}
       >
-        
-
+        <ChannelCardForDetails
+          item={channelDetails?.items ? channelDetails?.items[0] : null}
+        />
       </Box>
       <Box
         sx={{
@@ -94,7 +97,9 @@ const ChannelDetails = () => {
           ? videos.items.map((item, idx) => {
               return (
                 <Box key={idx}>
-                  {item.id.videoId && <VideoCard item={item} />}
+                  {item.id.videoId && (
+                    <VideoCard flexMobile={true} item={item} />
+                  )}
                 </Box>
               );
             })

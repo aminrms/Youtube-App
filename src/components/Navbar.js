@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState , useContext } from "react";
 // Materia-UI
 import { Box, Avatar, Typography, Toolbar, IconButton } from "@mui/material";
 // Material-UI-Icons
@@ -12,13 +12,21 @@ import Sidebar from "./Sidebar";
 import SearchBox from "./SearchBox";
 // Css
 import "../Styles/NavbarStyle.css";
+import SearchBoxMobile from "./SearchBoxMobile";
+import SearchIcon from "@mui/icons-material/Search";
+
+import { SearchBoxContextProvider } from "../Context/SearchBoxContext";
 const Navbar = () => {
   const [menu, setMenu] = useState(false);
+  const {setSearch} = useContext(SearchBoxContextProvider)
   const menuHandler = () => {
     setMenu(true);
   };
   const closeHandler = () => {
     setMenu(false);
+  };
+  const searchHandler = () => {
+    setSearch(true);
   };
   return (
     <Toolbar
@@ -29,7 +37,7 @@ const Navbar = () => {
         zIndex: 98,
         backgroundColor: "#fff",
         borderBottom: "1px solid #ddd",
-        position: { xs: "relative", md: "sticky" },
+        position: "sticky",
         top: 0,
       }}
     >
@@ -96,6 +104,13 @@ const Navbar = () => {
         </Box>
       </Box>
       <SearchBox />
+      <IconButton
+        onClick={searchHandler}
+        sx={{ display: { xs: "flex", md: "none" } }}
+      >
+        <SearchIcon />
+      </IconButton>
+      <SearchBoxMobile />
     </Toolbar>
   );
 };

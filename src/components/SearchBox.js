@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import { useNavigate } from "react-router-dom";
 import { Paper } from "@mui/material";
-const SearchBox = () => {
+const SearchBox = ({ zIndex  , width ,}) => {
   const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate();
   const submitHandler = (e) => {
@@ -18,15 +18,16 @@ const SearchBox = () => {
       className="search-box"
       component={"form"}
       sx={{
-        display: "flex",
+        display: { xs: "none", md: "flex" },
         alignItems: "center",
         justifyContent: "center",
         backgroundColor: "#eee",
         p: 0.5,
         pl: 0.8,
         pr: 0.8,
-        width: "30%",
+        width: width ? "100%" : "30%",
         boxShadow: "none",
+        zIndex: zIndex ? "1" : "-1",
       }}
     >
       <input

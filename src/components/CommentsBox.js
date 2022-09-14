@@ -9,9 +9,9 @@ const CommentsBox = ({ comments }) => {
   return (
     <>
       {comments?.items
-        ? comments.items.map((item , index) => {
+        ? comments.items.map((item, index) => {
             return (
-              <Box key={index}>
+              <Box key={index} sx={{ display: { xs: "none", md: "block" } }}>
                 <Box
                   sx={{
                     display: "flex",
@@ -83,7 +83,11 @@ const CommentsBox = ({ comments }) => {
                       color="textPrimary"
                       className="comment-text"
                     >
-                      {item?.snippet?.topLevelComment?.snippet?.textOriginal.slice(0,50)}...
+                      {item?.snippet?.topLevelComment?.snippet?.textOriginal.slice(
+                        0,
+                        50
+                      )}
+                      ...
                     </Typography>
                     <Typography
                       fontWeight="medium"

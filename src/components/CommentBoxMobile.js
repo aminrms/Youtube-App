@@ -8,7 +8,11 @@ import Box from "@mui/material/Box";
 import Skeleton from "@mui/material/Skeleton";
 import Typography from "@mui/material/Typography";
 import SwipeableDrawer from "@mui/material/SwipeableDrawer";
-
+import CommentIcon from "@mui/icons-material/Comment";
+import { Link } from "react-router-dom";
+import moment from "moment";
+import { Avatar } from "@mui/material";
+import CommentComponent from "./CommentComponent";
 const drawerBleeding = 56;
 
 interface Props {
@@ -37,7 +41,7 @@ const Puller = styled(Box)(({ theme }) => ({
   left: "calc(50% - 15px)",
 }));
 
-export default function SwipeableEdgeDrawer(props: Props) {
+const SwipeableEdgeDrawer = (props) => {
   const { window } = props;
   const [open, setOpen] = React.useState(false);
 
@@ -51,18 +55,36 @@ export default function SwipeableEdgeDrawer(props: Props) {
 
   return (
     <Root>
-      <CssBaseline />
       <Global
         styles={{
           ".MuiDrawer-root > .MuiPaper-root": {
-            height: `calc(50% - ${drawerBleeding}px)`,
             overflow: "visible",
+            zIndex:'1',
+            height: `calc(50% - ${drawerBleeding}px)`,
           },
         }}
       />
-      <Box sx={{ textAlign: "center", pt: 1 }}>
-        <Button onClick={toggleDrawer(true)}>Open</Button>
-      </Box>
+      
+        <Button
+          sx={{
+            width: "100%",
+            height: "100%",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            textTransform: "unset",
+            py:1,
+          }}
+          onClick={toggleDrawer(true)}
+        >
+          <Typography
+            variant="subtitle2"
+            sx={{ color: "#555", fontSize: "12px" }}
+          >
+            {parseInt(props.commentsCount).toLocaleString()} comments
+          </Typography>
+          <CommentIcon sx={{ fontSize: "15px", color: "#333" }} />
+        </Button>
       <SwipeableDrawer
         container={container}
         anchor="bottom"
@@ -74,6 +96,7 @@ export default function SwipeableEdgeDrawer(props: Props) {
         ModalProps={{
           keepMounted: true,
         }}
+        sx={{ display: { xs: "block", md: "none" } }}
       >
         <StyledBox
           sx={{
@@ -87,8 +110,8 @@ export default function SwipeableEdgeDrawer(props: Props) {
           }}
         >
           <Puller />
-          <Typography sx={{ p: 2, color: "text.secondary" }}>
-            51 results
+          <Typography fontWeight='medium' sx={{ p: 2, color: "text.secondary" }}>
+            Comments
           </Typography>
         </StyledBox>
         <StyledBox
@@ -96,12 +119,39 @@ export default function SwipeableEdgeDrawer(props: Props) {
             px: 2,
             pb: 2,
             height: "100%",
-            overflow: "auto",
+            overflowY: "scroll",
+            overflowX: "hidden",
           }}
         >
-          <Skeleton variant="rectangular" height="100%" />
+          {props.comments?.items
+            ? props.comments.items.map((item, index) => {
+                return <CommentComponent item={item} key={index} />;
+              })
+            : [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((item, index) => {
+                return (
+                  <Box
+                    sx={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "0.5rem",
+                    }}
+                  >
+                    <Skeleton variant={"circular"} width="30px" height="30px" />
+                    <Box>
+                      <Skeleton
+                        variant={"rounded"}
+                        width="100%"
+                        height="30px"
+                      />
+                      <Skeleton variant={"rounded"} width="40%" height="20px" />
+                    </Box>
+                  </Box>
+                );
+              })}
         </StyledBox>
       </SwipeableDrawer>
     </Root>
   );
-}
+};
+
+export default SwipeableEdgeDrawer;

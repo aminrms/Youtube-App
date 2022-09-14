@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import VideoCard from "./VideoCard";
 
-import {  Container, Skeleton } from "@mui/material";
+import {  Box, Container, Skeleton } from "@mui/material";
 import { fetchAPI } from "../utils/fetchData";
 
 const SuggestedVideosBox = ({ id }) => {
@@ -14,13 +14,26 @@ const SuggestedVideosBox = ({ id }) => {
     fetchApi();
   }, [id]);
   return (
-    <Container maxWidth="xl">
+    <Box
+      sx={{
+        display: "grid",
+        gridTemplateColumns: {
+          xs: "1fr",
+          sm: "1fr 1fr",
+          md: " 1fr",
+          lg: "1fr",
+        },
+        gap:'0.5rem',
+        justifyItems: "center",
+        mt: 1.5,
+      }}
+    >
       {videos.items
         ? videos.items.map((item, idx) => {
             return (
               <>
                 {item.snippet
-                  ? item.id.videoId && <VideoCard  item={item} key={idx} />
+                  ? item.id.videoId && <VideoCard flexMobile={true} item={item} key={idx} />
                   : ""}
               </>
             );
@@ -49,7 +62,7 @@ const SuggestedVideosBox = ({ id }) => {
               </Container>
             );
           })}
-    </Container>
+    </Box>
   );
 };
 

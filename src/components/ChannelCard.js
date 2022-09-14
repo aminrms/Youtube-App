@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 const ChannelCard = ({ item }) => {
   return (
     <Link
-      to={item?.id?.channelId ? `/channel/${item?.id?.channelId}` : null}
+      to={item?.id?.channelId ? `/channel/${item?.id?.channelId}` : '#'}
       style={{ color: "#333", textDecoration: "none" }}
     >
       <Card sx={{ maxWidth: 345, p: 1 }} className="channelCard">

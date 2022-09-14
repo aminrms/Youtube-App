@@ -59,23 +59,61 @@
 .card.row:hover {
   background-color: #eee;
 }
-.card img{
-  object-fit:cover;
+.card img {
+  object-fit: cover;
 }
 @media (max-width: 769px) {
   .card.row {
     border-bottom: 1px solid #eee;
-    height:fit-content !important;
+    height: fit-content !important;
   }
   .card.row .img-box {
     height: 30% !important;
     width: 40%;
     margin: 0.5rem auto;
   }
-  .card.row .img-box img{
+  .card.row .img-box img {
     object-fit: fill;
   }
   .card.row .card-content {
+    width: 50%;
+    height: 60%;
+    margin: 0.5rem auto;
+  }
+  
+}
+@media (max-width:600px){
+  .card.rowMobile {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    width: 100% !important;
+    border-bottom: 1px solid #eee;
+    height:100px !important;
+    margin: 0.2rem 0;
+  }
+  .card.rowMobile .img-box {
+    /* height: 30% !important; */
+    width: 50%;
+    display: flex;
+    background-color: #ddd;
+    align-items: center;
+    margin: 0.5rem 0.3rem;
+    justify-content: center;
+  }
+  .card.rowMobile .img-box img {
+    width: 120%;
+    height: 120%;
+    object-fit: cover;
+  }
+  .card.rowMobile .card-content {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    /* background-color: red; */
+    padding-top: 1.5rem;
+    padding-bottom: 1.2rem;
     width: 50%;
     height: 60%;
     margin: 0.5rem auto;

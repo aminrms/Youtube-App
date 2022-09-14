@@ -69,6 +69,7 @@ const Sidebar = ({ menu, setMenu, closeHandler }) => {
                 gap: "0.5rem",
                 textDecoration: "none",
                 color: "#222",
+                width: "100%",
               }}
               to="/"
             >
@@ -104,27 +105,33 @@ const Sidebar = ({ menu, setMenu, closeHandler }) => {
           {categories.map((category, idx) => {
             return (
               <li onClick={() => setMenu(false)} key={idx}>
-                <span
-                  onClick={() => setSelectedCategory(category.name)}
+                <Link
+                  to="/"
                   style={{
-                    backgroundColor:
-                      selectedCategory === category.name ? "#eee" : "#fff",
+                    textDecoration: "none",
+                    color: "#333",
+                    width: "100%",
+                    height: "100%",
                   }}
                 >
-                  {category.icon}
-                  <Typography
-                    variant="subtitle2"
-                    component="h6"
-                    fontWeight="medium"
+                  {" "}
+                  <span
+                    onClick={() => setSelectedCategory(category.name)}
+                    style={{
+                      backgroundColor:
+                        selectedCategory === category.name ? "#eee" : "#fff",
+                    }}
                   >
-                    <Link
-                      to="/"
-                      style={{ textDecoration: "none", color: "#333" }}
+                    {category.icon}
+                    <Typography
+                      variant="subtitle2"
+                      component="h6"
+                      fontWeight="medium"
                     >
                       {category.name}
-                    </Link>
-                  </Typography>
-                </span>
+                    </Typography>
+                  </span>
+                </Link>
               </li>
             );
           })}

@@ -8,7 +8,7 @@ import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import { Link } from "react-router-dom";
 import moment from "moment";
 import { Box } from "@mui/material";
-const VideoCard = ({ item, flexDirection }) => {
+const VideoCard = ({ item, flexDirection, flexMobile }) => {
   return (
     <Link
       to={item?.id?.videoId ? `/video/${item?.id?.videoId}` : null}
@@ -19,7 +19,7 @@ const VideoCard = ({ item, flexDirection }) => {
           sx={{ maxWidth: 345 }}
           className={flexDirection ? "card row" : "card"}
         >
-          <Box className="img-box" >
+          <Box className="img-box">
             <img
               src={item.snippet.thumbnails.high.url}
               alt={item.snippet.title}
@@ -40,7 +40,7 @@ const VideoCard = ({ item, flexDirection }) => {
                 component={"h6"}
                 sx={{
                   display: "-webkit-box",
-                  fontSize: { xs: "13px", sm: "14.5px", md: "16px" },
+                  fontSize: { xs: "11px", sm: "14.5px", md: "16px" },
                 }}
               >
                 {item?.snippet?.title}
@@ -95,7 +95,7 @@ const VideoCard = ({ item, flexDirection }) => {
       ) : (
         <Card
           sx={{ maxWidth: 345, width: { xs: "100%", xl: "340px" } }}
-          className={flexDirection ? "card row" : "card"}
+          className={flexMobile  ? "card rowMobile": "card"}
         >
           <Box className="img-box">
             <CardMedia

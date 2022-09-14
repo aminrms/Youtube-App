@@ -24,7 +24,7 @@ export const fetchAPI = async (
       videoId: videoId,
     },
     headers: {
-      "X-RapidAPI-Key": "7a0b99756bmshe83324ffd2f070dp160b7ejsn2f759834c6b3",
+      "X-RapidAPI-Key": "17f885e099mshd881a219fafa7ebp150078jsn68c74ddc461c",
       "X-RapidAPI-Host": "youtube-v31.p.rapidapi.com",
     },
   });

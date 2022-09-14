@@ -8,7 +8,7 @@ import Box from "@mui/material/Box";
 import Skeleton from "@mui/material/Skeleton";
 import Typography from "@mui/material/Typography";
 import SwipeableDrawer from "@mui/material/SwipeableDrawer";
-
+import DescriptionIcon from "@mui/icons-material/Description";
 const drawerBleeding = 56;
 
 interface Props {
@@ -37,7 +37,7 @@ const Puller = styled(Box)(({ theme }) => ({
   left: "calc(50% - 15px)",
 }));
 
-export default function SwipeableEdgeDrawer(props: Props) {
+const DescriptionMobile = (props) => {
   const { window } = props;
   const [open, setOpen] = React.useState(false);
 
@@ -51,18 +51,37 @@ export default function SwipeableEdgeDrawer(props: Props) {
 
   return (
     <Root>
-      <CssBaseline />
       <Global
         styles={{
           ".MuiDrawer-root > .MuiPaper-root": {
-            height: `calc(50% - ${drawerBleeding}px)`,
             overflow: "visible",
+            zIndex: "1",
+            height: `calc(50% - ${drawerBleeding}px)`,
           },
         }}
       />
-      <Box sx={{ textAlign: "center", pt: 1 }}>
-        <Button onClick={toggleDrawer(true)}>Open</Button>
-      </Box>
+
+      <Button
+        sx={{
+          width: "100%",
+          height: "100%",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          textTransform: "unset",
+          py: 1,
+          backgroundColor: "#fff",
+        }}
+        onClick={toggleDrawer(true)}
+      >
+        <Typography
+          variant="subtitle2"
+          sx={{ color: "#555", fontSize: "12px" }}
+        >
+          Description
+        </Typography>
+        <DescriptionIcon sx={{ fontSize: "15px", color: "#333" }} />
+      </Button>
       <SwipeableDrawer
         container={container}
         anchor="bottom"
@@ -74,6 +93,7 @@ export default function SwipeableEdgeDrawer(props: Props) {
         ModalProps={{
           keepMounted: true,
         }}
+        sx={{ display: { xs: "block", md: "none" } }}
       >
         <StyledBox
           sx={{
@@ -87,8 +107,11 @@ export default function SwipeableEdgeDrawer(props: Props) {
           }}
         >
           <Puller />
-          <Typography sx={{ p: 2, color: "text.secondary" }}>
-            51 results
+          <Typography
+            fontWeight="medium"
+            sx={{ p: 2, color: "text.secondary" }}
+          >
+            Description
           </Typography>
         </StyledBox>
         <StyledBox
@@ -96,12 +119,17 @@ export default function SwipeableEdgeDrawer(props: Props) {
             px: 2,
             pb: 2,
             height: "100%",
-            overflow: "auto",
+            overflowY: "scroll",
+            overflowX: "hidden",
           }}
         >
-          <Skeleton variant="rectangular" height="100%" />
+          <Typography variant="body2" color="textPrimary">
+            {props.description}
+          </Typography>
         </StyledBox>
       </SwipeableDrawer>
     </Root>
   );
-}
+};
+
+export default DescriptionMobile;
